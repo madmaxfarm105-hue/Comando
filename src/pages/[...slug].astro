@@ -1,28 +1,14 @@
 ---
-import { SEO } from '@wix/seo/components';
-import { loadSEOTagsServiceConfig } from '@wix/seo/services';
-import { Head } from "@/components/Head";
-import AppRouter from "@/components/Router";
-import "@wix/wix-vibe-plugins/plugins-vars.css";
-import "@wix/wix-vibe-plugins/plugins-theme.css";
-import "@/styles/global.css";
-
-const seoTagsServiceConfig = await loadSEOTagsServiceConfig({
-  pageUrl: Astro.url.href,
-  itemData: {
-    pageName: 'Home',
-  },
-});
+import AppRouter from '@/components/Router';
 ---
 
-<html lang="en" class="w-full h-full">
+<html lang="pt-BR">
   <head>
-    <Head />
-    <SEO.Tags seoTagsServiceConfig={seoTagsServiceConfig} slot="seo-tags" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Jogo - Níveis e Regras</title>
   </head>
-  <body class="w-full h-full">
-    <div id="root" class="w-full h-full">
-      <AppRouter client:only="react" />
-    </div>
+  <body>
+    <AppRouter client:load />
   </body>
 </html>
