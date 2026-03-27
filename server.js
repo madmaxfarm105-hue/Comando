@@ -11,11 +11,23 @@ const authRoutes = require('./routes/auth-routes');
 const app = express();
 
 // Database connection
-mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/multiplayer-game')
+const mongoUri = process.env.MONGO_URI;
+
+if (!mongoUri) {
+  console.error('ERROR: MONGO_URI environment variable is not set');
+  process.exit(1);
+}
+
+console.log('Attempting to connect to MongoDB...');
+
+mongoose.connect(mongoUri)
   .then(() => {
-    console.log('MongoDB connected');
+    console.log('MongoDB connected successfully');
   })
-  .catch((err) => console.log(err));
+  .catch((err) => {
+    console.error('MongoDB connection failed:', err.message);
+    process.exit(1);
+  });
 
 // Middleware
 app.use(express.json());
