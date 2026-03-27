@@ -1,65 +1,10 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 
 export default function HomePage() {
-
-  useEffect(() => {
-    const script = document.createElement('script');
-    script.src = "https://accounts.google.com/gsi/client";
-    script.async = true;
-    script.defer = true;
-    document.body.appendChild(script);
-
-    script.onload = () => {
-      google.accounts.id.initialize({
-        client_id: "948102948683-u0o9lg73rprka2t0pp0tr4ol96echnf4.apps.googleusercontent.com",
-        callback: handleCredentialResponse
-      });
-
-      google.accounts.id.renderButton(
-        document.getElementById("googleButton"),
-        {
-          theme: "outline",
-          size: "large"
-        }
-      );
-    };
-  }, []);
-
-  async function handleCredentialResponse(response) {
-    try {
-      const res = await fetch("https://comando-server.onrender.com/auth/google", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-          token: response.credential
-        })
-      });
-
-      const data = await res.json();
-
-      if (data.success) {
-        localStorage.setItem("authToken", data.token);
-        localStorage.setItem("playerData", JSON.stringify(data.player));
-
-        alert("Login realizado com sucesso!");
-
-      } else {
-        alert("Erro no login");
-        console.error(data);
-      }
-
-    } catch (err) {
-      console.error(err);
-      alert("Erro ao conectar com servidor");
-    }
-  }
-
   return (
     <div className="min-h-screen bg-background flex flex-col">
       <Header />
@@ -81,7 +26,7 @@ export default function HomePage() {
             </p>
           </motion.div>
 
-          {/* Login Section */}
+          {/* CTA Section */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -101,11 +46,6 @@ export default function HomePage() {
               >
                 Ver Regras
               </Link>
-            </div>
-
-            <div className="text-center">
-              <p className="font-paragraph text-sm text-foreground mb-4">Ou faça login com sua conta Google:</p>
-              <div id="googleButton"></div>
             </div>
           </motion.div>
 

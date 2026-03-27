@@ -177,11 +177,11 @@ export default function RegrasPage() {
             <p className="font-paragraph text-base md:text-lg text-primary-foreground mb-8 max-w-2xl mx-auto">
               Agora que você conhece as regras, é hora de iniciar sua jornada pelos 100 níveis do Domínio do Comando.
             </p>
-            <a href="/niveis">
+            <Link to="/niveis">
               <button className="bg-primary-foreground text-primary font-paragraph px-10 py-4 uppercase text-sm tracking-wider hover:bg-background hover:text-primary transition-colors">
                 Explorar Níveis
               </button>
-            </a>
+            </Link>
           </motion.div>
         </div>
       </section>
