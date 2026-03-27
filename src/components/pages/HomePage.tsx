@@ -64,7 +64,7 @@ export default function HomePage() {
     <div className="min-h-screen bg-background flex flex-col">
       <Header />
       
-      <main className="flex-1 w-full pt-24">
+      <main className="flex-1 w-full pt-32 md:pt-40">
         {/* Hero Section */}
         <section className="w-full max-w-[120rem] mx-auto px-8 md:px-16 py-20">
           <motion.div
