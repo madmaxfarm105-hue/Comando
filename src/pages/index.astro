@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multiplayer Game Login</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+        #login-container {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        #profile {
+            margin-top: 20px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div id="login-container">
+        <button id="google-oauth-button">Login with Google</button>
+        <div id="profile">
+            <h2>Player Profile</h2>
+            <p>Level: <span id="level">0</span></p>
+            <p>Experience: <span id="experience">0</span></p>
+            <p>Balance: <span id="balance">0</span></p>
+            <p>Items Count: <span id="items-count">0</span></p>
+            <button id="enter-game-button">Enter Game</button>
+        </div>
+    </div>
+    <script>
+        document.getElementById('google-oauth-button').onclick = function() {
+            // Add Google OAuth login logic here
+            // On successful login:
+            document.getElementById('profile').style.display = 'block';
+            document.getElementById('level').innerText = '1'; // Example value
+            document.getElementById('experience').innerText = '100'; // Example value
+            document.getElementById('balance').innerText = '50'; // Example value
+            document.getElementById('items-count').innerText = '5'; // Example value
+        };
+
+        document.getElementById('enter-game-button').onclick = function() {
+            // Logic to enter the game
+            alert('Entering Game...');
+        };
+    </script>
+</body>
+</html>
