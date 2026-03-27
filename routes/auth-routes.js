@@ -1,10 +1,11 @@
 const express = require('express');
 const router = express.Router();
-const User = require('../models/User');
+
+const Player = require('../models/User');
 const { verifyGoogleToken } = require('./google-auth');
 const { generateToken } = require('../utils/jwt-handler');
 
-// GOOGLE LOGIN VIA TOKEN
+// LOGIN GOOGLE REAL
 router.post('/auth/google', async (req, res) => {
   try {
     const { token } = req.body;
@@ -24,10 +25,10 @@ router.post('/auth/google', async (req, res) => {
       return res.status(400).json({ error: 'Invalid Google profile data' });
     }
 
-    let user = await User.findOne({ googleId });
+    let player = await Player.findOne({ googleId });
 
-    if (!user) {
-      user = await User.create({
+    if (!player) {
+      player = await Player.create({
         googleId,
         email,
         name,
@@ -39,47 +40,48 @@ router.post('/auth/google', async (req, res) => {
     } else {
       let changed = false;
 
-      if (user.email !== email) {
-        user.email = email;
+      if (player.email !== email) {
+        player.email = email;
         changed = true;
       }
 
-      if (user.name !== name) {
-        user.name = name;
+      if (player.name !== name) {
+        player.name = name;
         changed = true;
       }
 
-      if (user.avatar !== avatar) {
-        user.avatar = avatar;
+      if (player.avatar !== avatar) {
+        player.avatar = avatar;
         changed = true;
       }
 
       if (changed) {
-        await user.save();
+        await player.save();
       }
     }
 
     const jwt = generateToken({
-      userId: user._id.toString(),
-      email: user.email,
-      name: user.name,
+      userId: player._id.toString(),
+      email: player.email,
+      name: player.name,
     });
 
     return res.status(200).json({
       success: true,
       token: jwt,
-      user: {
-        userId: user._id.toString(),
-        email: user.email,
-        name: user.name,
-        avatar: user.avatar,
-        level: user.level,
-        hp: user.hp,
-        money: user.money,
+      player: {
+        userId: player._id.toString(),
+        email: player.email,
+        name: player.name,
+        avatar: player.avatar,
+        level: player.level,
+        hp: player.hp,
+        money: player.money,
       },
     });
   } catch (error) {
     console.error('Google auth error:', error);
+
     return res.status(500).json({
       error: 'Authentication failed',
       details: error.message,
@@ -87,28 +89,30 @@ router.post('/auth/google', async (req, res) => {
   }
 });
 
-// PLAYER DATA ROUTES
+// LISTAR PLAYERS
 router.get('/players', async (_req, res) => {
   try {
-    const players = await User.find().select('-__v');
+    const players = await Player.find().select('-__v');
     return res.status(200).json(players);
   } catch (error) {
     return res.status(500).json({ error: 'Failed to fetch players' });
   }
 });
 
+// CRIAR PLAYER MANUAL
 router.post('/players', async (req, res) => {
   try {
-    const player = await User.create(req.body);
+    const player = await Player.create(req.body);
     return res.status(201).json(player);
   } catch (error) {
     return res.status(500).json({ error: 'Failed to create player' });
   }
 });
 
+// DELETAR PLAYER
 router.delete('/players/:id', async (req, res) => {
   try {
-    const deleted = await User.findByIdAndDelete(req.params.id);
+    const deleted = await Player.findByIdAndDelete(req.params.id);
 
     if (!deleted) {
       return res.status(404).json({ error: 'Player not found' });
