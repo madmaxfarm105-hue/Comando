@@ -47,7 +47,7 @@ export default function NiveisPage() {
       <Header />
 
       {/* Hero Section */}
-      <section className="relative w-full pt-32 pb-20 md:pt-40 md:pb-32 overflow-hidden">
+      <section className="relative w-full py-20 md:py-32 overflow-hidden">
         <div className="absolute top-0 right-0 w-1/2 h-full bg-abstractshape opacity-20" 
              style={{ clipPath: 'polygon(30% 0, 100% 0, 100% 100%, 0 100%)' }} />
         

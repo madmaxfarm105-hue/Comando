@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { BookOpen, Clock } from 'lucide-react';
 import { BaseCrudService } from '@/integrations';
@@ -37,7 +38,7 @@ export default function RegrasPage() {
       <Header />
 
       {/* Hero Section */}
-      <section className="relative w-full pt-32 pb-20 md:pt-40 md:pb-32 overflow-hidden">
+      <section className="relative w-full py-20 md:py-32 overflow-hidden">
         <div className="absolute bottom-0 left-0 w-2/5 h-64 bg-primary opacity-10" 
              style={{ clipPath: 'polygon(0 100%, 100% 100%, 80% 0, 0 20%)' }} />
         

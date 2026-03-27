@@ -35,7 +35,7 @@ export default function NivelDetailPage() {
     <div className="min-h-screen bg-background">
       <Header />
 
-      <div className="pt-32 pb-20 md:pt-40 md:pb-32">
+      <div className="pb-20 md:pb-32">
         <div className="max-w-[100rem] mx-auto px-8 md:px-16">
           {/* Back Button */}
           <Link to="/niveis" className="inline-flex items-center gap-2 font-paragraph text-sm text-foreground hover:text-primary transition-colors mb-8">
