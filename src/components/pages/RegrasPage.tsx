@@ -76,11 +76,10 @@ export default function RegrasPage() {
                 <button
                   key={category}
                   onClick={() => setSelectedCategory(category)}
-                  className={`font-paragraph text-sm uppercase tracking-wider px-6 py-3 transition-colors ${
-                    selectedCategory === category
-                      ? 'bg-primary-foreground text-primary'
-                      : 'bg-transparent border-2 border-primary-foreground text-primary-foreground hover:bg-primary-foreground hover:text-primary'
-                  }`}
+                  className={selectedCategory === category
+                    ? 'font-paragraph text-sm uppercase tracking-wider px-6 py-3 transition-colors bg-primary-foreground text-primary'
+                    : 'font-paragraph text-sm uppercase tracking-wider px-6 py-3 transition-colors bg-transparent border-2 border-primary-foreground text-primary-foreground hover:bg-primary-foreground hover:text-primary'
+                  }
                 >
                   {category === 'all' ? 'Todas' : category}
                 </button>
