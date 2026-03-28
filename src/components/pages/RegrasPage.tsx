@@ -4,8 +4,6 @@ import { motion } from 'framer-motion';
 import { BookOpen, Clock } from 'lucide-react';
 import { BaseCrudService } from '@/integrations';
 import { RegrasdoJogo } from '@/entities';
-import Header from '@/components/Header';
-import Footer from '@/components/Footer';
 
 export default function RegrasPage() {
   const [rules, setRules] = useState<RegrasdoJogo[]>([]);
@@ -34,8 +32,7 @@ export default function RegrasPage() {
     : rules.filter(r => r.category === selectedCategory);
 
   return (
-    <div className="min-h-screen bg-background">
-      <Header />
+    <div className="w-full bg-background">
 
       {/* Hero Section */}
       <section className="relative w-full py-20 md:py-32 overflow-hidden">
@@ -185,8 +182,6 @@ export default function RegrasPage() {
           </motion.div>
         </div>
       </section>
-
-      <Footer />
     </div>
   );
 }

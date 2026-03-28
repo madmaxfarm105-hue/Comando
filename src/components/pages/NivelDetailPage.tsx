@@ -6,8 +6,6 @@ import { BaseCrudService } from '@/integrations';
 import { NveisdoJogo } from '@/entities';
 import { Image } from '@/components/ui/image';
 import { LoadingSpinner } from '@/components/ui/loading-spinner';
-import Header from '@/components/Header';
-import Footer from '@/components/Footer';
 
 export default function NivelDetailPage() {
   const { id } = useParams<{ id: string }>();
@@ -32,9 +30,7 @@ export default function NivelDetailPage() {
   };
 
   return (
-    <div className="min-h-screen bg-background">
-      <Header />
-
+    <div className="w-full bg-background">
       <div className="pb-20 md:pb-32">
         <div className="max-w-[100rem] mx-auto px-8 md:px-16">
           {/* Back Button */}
@@ -199,8 +195,6 @@ export default function NivelDetailPage() {
           </div>
         </div>
       </div>
-
-      <Footer />
     </div>
   );
 }

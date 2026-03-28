@@ -2,18 +2,24 @@ import { MemberProvider } from '@/integrations';
 import { createBrowserRouter, RouterProvider, Navigate, Outlet } from 'react-router-dom';
 import { ScrollToTop } from '@/lib/scroll-to-top';
 import ErrorPage from '@/integrations/errorHandlers/ErrorPage';
+import Header from '@/components/Header';
+import Footer from '@/components/Footer';
 import HomePage from '@/components/pages/HomePage';
 import NiveisPage from '@/components/pages/NiveisPage';
 import NivelDetailPage from '@/components/pages/NivelDetailPage';
 import RegrasPage from '@/components/pages/RegrasPage';
 
-// Layout component that includes ScrollToTop
+// Layout component that includes Header, Footer and ScrollToTop
 function Layout() {
   return (
-    <>
+    <div className="min-h-screen bg-background flex flex-col">
       <ScrollToTop />
-      <Outlet />
-    </>
+      <Header />
+      <main className="flex-1 w-full">
+        <Outlet />
+      </main>
+      <Footer />
+    </div>
   );
 }
 

@@ -1,15 +1,10 @@
 import React from 'react';
-import Header from '@/components/Header';
-import Footer from '@/components/Footer';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 
 export default function HomePage() {
   return (
-    <div className="min-h-screen bg-background flex flex-col">
-      <Header />
-      
-      <main className="flex-1 w-full">
+    <div className="w-full">
         {/* Hero Section */}
         <section className="w-full max-w-[120rem] mx-auto px-8 md:px-16 py-20">
           <motion.div
@@ -76,9 +71,6 @@ export default function HomePage() {
             </div>
           </motion.div>
         </section>
-      </main>
-
-      <Footer />
     </div>
   );
 }

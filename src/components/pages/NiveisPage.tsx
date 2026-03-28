@@ -5,8 +5,6 @@ import { ChevronRight, Trophy } from 'lucide-react';
 import { BaseCrudService } from '@/integrations';
 import { NveisdoJogo } from '@/entities';
 import { Image } from '@/components/ui/image';
-import Header from '@/components/Header';
-import Footer from '@/components/Footer';
 
 export default function NiveisPage() {
   const [levels, setLevels] = useState<NveisdoJogo[]>([]);
@@ -43,8 +41,7 @@ export default function NiveisPage() {
   };
 
   return (
-    <div className="min-h-screen bg-background">
-      <Header />
+    <div className="w-full bg-background">
 
       {/* Hero Section */}
       <section className="relative w-full py-20 md:py-32 overflow-hidden">
@@ -147,8 +144,6 @@ export default function NiveisPage() {
           )}
         </div>
       </section>
-
-      <Footer />
     </div>
   );
 }
