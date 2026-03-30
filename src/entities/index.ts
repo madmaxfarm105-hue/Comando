@@ -4,6 +4,27 @@
  */
 
 /**
+ * Collection ID: colecoesdeacessorios
+ * Interface for ColeesdeAcessrios
+ */
+export interface ColeesdeAcessrios {
+  _id: string;
+  _createdDate?: Date;
+  _updatedDate?: Date;
+  /** @wixFieldType number */
+  level?: number;
+  /** @wixFieldType text */
+  mainColor?: string;
+  /** @wixFieldType text */
+  collectionName?: string;
+  /** @wixFieldType text */
+  themeDescription?: string;
+  /** @wixFieldType image - Contains image URL, render with <Image> component, NOT as text */
+  themeBackgroundImage?: string;
+}
+
+
+/**
  * Collection ID: niveis
  * Interface for NveisdoJogo
  */

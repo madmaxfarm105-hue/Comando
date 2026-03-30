@@ -8,6 +8,7 @@ import HomePage from '@/components/pages/HomePage';
 import NiveisPage from '@/components/pages/NiveisPage';
 import NivelDetailPage from '@/components/pages/NivelDetailPage';
 import RegrasPage from '@/components/pages/RegrasPage';
+import AcessoriosPage from '@/components/pages/AcessoriosPage';
 
 // Layout component that includes Header, Footer and ScrollToTop
 function Layout() {
@@ -55,6 +56,13 @@ const router = createBrowserRouter([
         element: <RegrasPage />,
         routeMetadata: {
           pageIdentifier: 'regras',
+        },
+      },
+      {
+        path: "acessorios",
+        element: <AcessoriosPage />,
+        routeMetadata: {
+          pageIdentifier: 'acessorios',
         },
       },
       {

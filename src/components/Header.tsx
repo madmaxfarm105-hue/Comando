@@ -43,6 +43,14 @@ export default function Header() {
             >
               Regras
             </Link>
+            <Link 
+              to="/acessorios" 
+              className={`font-paragraph text-sm uppercase tracking-wider transition-colors ${
+                isActive('/acessorios') ? 'text-primary' : 'text-foreground hover:text-primary'
+              }`}
+            >
+              Acessórios
+            </Link>
           </nav>
 
           {/* Mobile Menu Button */}
@@ -84,6 +92,15 @@ export default function Header() {
               }`}
             >
               Regras
+            </Link>
+            <Link 
+              to="/acessorios" 
+              onClick={() => setMobileMenuOpen(false)}
+              className={`font-paragraph text-sm uppercase tracking-wider transition-colors ${
+                isActive('/acessorios') ? 'text-primary' : 'text-foreground hover:text-primary'
+              }`}
+            >
+              Acessórios
             </Link>
           </nav>
         )}
