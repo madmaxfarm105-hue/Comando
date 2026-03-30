@@ -20,7 +20,9 @@ export default function NiveisPage() {
   const loadLevels = async () => {
     setIsLoading(true);
     try {
+      console.log('Loading levels with BaseCrudService...');
       const result = await BaseCrudService.getAll<NveisdoJogo>('niveis', [], { limit, skip });
+      console.log('Levels loaded:', result);
       if (skip === 0) {
         setLevels(result.items);
       } else {
@@ -29,6 +31,8 @@ export default function NiveisPage() {
       setHasNext(result.hasNext);
     } catch (error) {
       console.error('Failed to load levels:', error);
+      setLevels([]);
+      setHasNext(false);
     } finally {
       setIsLoading(false);
     }

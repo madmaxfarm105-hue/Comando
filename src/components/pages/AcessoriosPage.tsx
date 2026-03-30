@@ -22,11 +22,14 @@ export default function AcessoriosPage() {
   useEffect(() => {
     const loadCollections = async () => {
       try {
+        console.log('Loading accessory collections with BaseCrudService...');
         const result = await BaseCrudService.getAll<ColeesdeAcessrios>('colecoesdeacessorios', [], { limit: 100 });
+        console.log('Collections loaded:', result);
         const sorted = result.items.sort((a, b) => (a.level || 0) - (b.level || 0));
         setCollections(sorted);
       } catch (error) {
         console.error('Erro ao carregar coleções:', error);
+        setCollections([]);
       } finally {
         setIsLoading(false);
       }

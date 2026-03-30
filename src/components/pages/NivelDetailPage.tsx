@@ -20,10 +20,13 @@ export default function NivelDetailPage() {
     if (!id) return;
     setIsLoading(true);
     try {
+      console.log('Loading level with ID:', id);
       const data = await BaseCrudService.getById<NveisdoJogo>('niveis', id);
+      console.log('Level loaded:', data);
       setLevel(data);
     } catch (error) {
       console.error('Failed to load level:', error);
+      setLevel(null);
     } finally {
       setIsLoading(false);
     }

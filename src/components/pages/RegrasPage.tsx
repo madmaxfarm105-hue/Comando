@@ -17,10 +17,13 @@ export default function RegrasPage() {
   const loadRules = async () => {
     setIsLoading(true);
     try {
+      console.log('Loading rules with BaseCrudService...');
       const result = await BaseCrudService.getAll<RegrasdoJogo>('regras', [], { limit: 100 });
+      console.log('Rules loaded:', result);
       setRules(result.items);
     } catch (error) {
       console.error('Failed to load rules:', error);
+      setRules([]);
     } finally {
       setIsLoading(false);
     }
