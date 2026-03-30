@@ -2,17 +2,16 @@ import { useState, useEffect } from 'react';
 import { BaseCrudService } from '@/integrations';
 import { ColeesdeAcessrios } from '@/entities';
 import { LoadingSpinner } from '@/components/ui/loading-spinner';
-import { Button } from '@/components/ui/button';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Gem, Watch, Link as LinkIcon, Briefcase, Clock, Glasses } from 'lucide-react';
 import { Image } from '@/components/ui/image';
 
 const ACCESSORY_TYPES = [
-  { name: 'Anel', icon: '💍' },
-  { name: 'Pulseira', icon: '⌚' },
-  { name: 'Corrente', icon: '⛓️' },
-  { name: 'Bolsa', icon: '👜' },
-  { name: 'Relógio', icon: '⏰' },
-  { name: 'Óculos de Sol', icon: '🕶️' },
+  { name: 'Anel', icon: Gem },
+  { name: 'Pulseira', icon: Watch },
+  { name: 'Corrente', icon: LinkIcon },
+  { name: 'Bolsa', icon: Briefcase },
+  { name: 'Relógio', icon: Clock },
+  { name: 'Óculos de Sol', icon: Glasses },
 ];
 
 export default function AcessoriosPage() {
@@ -94,32 +93,37 @@ export default function AcessoriosPage() {
         <div className="relative z-10 w-full max-w-[100rem] mx-auto px-4">
           {/* Grid de Acessórios */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
-            {ACCESSORY_TYPES.map((accessory, idx) => (
-              <div
-                key={idx}
-                className="flex flex-col items-center justify-center p-8 rounded-lg backdrop-blur-sm"
-                style={{
-                  backgroundColor: `${mainColor}20`,
-                  border: `2px solid ${mainColor}`,
-                }}
-              >
-                {/* Ícone do Acessório */}
-                <div className="text-6xl mb-4">{accessory.icon}</div>
-
-                {/* Nome do Acessório */}
-                <h3
-                  className="font-heading text-2xl font-bold text-center"
-                  style={{ color: mainColor }}
+            {ACCESSORY_TYPES.map((accessory, idx) => {
+              const IconComponent = accessory.icon;
+              return (
+                <div
+                  key={idx}
+                  className="flex flex-col items-center justify-center p-8 rounded-lg backdrop-blur-sm"
+                  style={{
+                    backgroundColor: `${mainColor}20`,
+                    border: `2px solid ${mainColor}`,
+                  }}
                 >
-                  {accessory.name}
-                </h3>
+                  {/* Ícone do Acessório */}
+                  <div className="mb-4">
+                    <IconComponent size={48} style={{ color: mainColor }} />
+                  </div>
 
-                {/* Descrição */}
-                <p className="font-paragraph text-sm text-foreground mt-2 text-center opacity-80">
-                  Coleção {currentCollection.collectionName}
-                </p>
-              </div>
-            ))}
+                  {/* Nome do Acessório */}
+                  <h3
+                    className="font-heading text-2xl font-bold text-center"
+                    style={{ color: mainColor }}
+                  >
+                    {accessory.name}
+                  </h3>
+
+                  {/* Descrição */}
+                  <p className="font-paragraph text-sm text-foreground mt-2 text-center opacity-80">
+                    Coleção {currentCollection.collectionName}
+                  </p>
+                </div>
+              );
+            })}
           </div>
         </div>
       </div>
@@ -127,15 +131,13 @@ export default function AcessoriosPage() {
       {/* Navegação */}
       <div className="w-full max-w-[100rem] mx-auto px-4 py-12">
         <div className="flex items-center justify-between">
-          <Button
+          <button
             onClick={handlePrevious}
-            variant="outline"
-            size="lg"
-            className="flex items-center gap-2"
+            className="flex items-center gap-2 px-6 py-3 bg-primary text-primary-foreground font-paragraph uppercase text-sm tracking-wider hover:bg-foreground hover:text-background transition-colors"
           >
             <ChevronLeft className="w-5 h-5" />
             Coleção Anterior
-          </Button>
+          </button>
 
           {/* Indicador de Página */}
           <div className="text-center">
@@ -147,15 +149,13 @@ export default function AcessoriosPage() {
             </p>
           </div>
 
-          <Button
+          <button
             onClick={handleNext}
-            variant="outline"
-            size="lg"
-            className="flex items-center gap-2"
+            className="flex items-center gap-2 px-6 py-3 bg-primary text-primary-foreground font-paragraph uppercase text-sm tracking-wider hover:bg-foreground hover:text-background transition-colors"
           >
             Próxima Coleção
             <ChevronRight className="w-5 h-5" />
-          </Button>
+          </button>
         </div>
 
         {/* Barra de Progresso */}
@@ -187,7 +187,6 @@ export default function AcessoriosPage() {
                 backgroundColor: collection.mainColor || '#FFD700',
                 borderColor: collection.mainColor || '#FFD700',
                 color: '#fff',
-                textShadow: '0 1px 2px rgba(0,0,0,0.5)',
               }}
               title={`Nível ${collection.level}`}
             >
